@@ -7,7 +7,7 @@ ws = Tk()
 root.geometry("600x400")
 
 # declaring string variable
-# for storing size and password
+# for storing size
 size_var = tk.StringVar()
 
 
