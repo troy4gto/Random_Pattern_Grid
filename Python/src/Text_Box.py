@@ -1,45 +1,52 @@
 import tkinter as tk
-from tkinter import *
+from tkinter import ttk
+from tkinter.messagebox import showinfo
+
+# root window
 root = tk.Tk()
-ws = Tk()
+root.geometry("300x150")
+root.resizable(False, False)
+root.title('Enter width and height')
 
-# setting the windows size
-root.geometry("600x400")
-
-# declaring string variable
-# for storing size
-size_var = tk.StringVar()
-
-
-# defining a function that will
-# get the size and password and
-# print them on the screen
-def submit():
-
-    size = size_var.get()
-
-    print("The size is : " + size)
+# store email address and password
+width = tk.StringVar()
+height = tk.StringVar()
 
 
-# creating a label for
-# size using widget Label
-size_label = tk.Label(root, text='User Size', font=('calibre', 10, 'bold'))
+def login_clicked():
+    """ callback when the login button clicked
+    """
+    msg = f'You entered width: {width.get()} and height: {height.get()}'
+    showinfo(
+        title='Information',
+        message=msg
+    )
 
-# creating a entry for input
-# size using widget Entry
-size_entry = tk.Entry(root, textvariable=size_var, font=('calibre', 10, 'normal'))
 
-# creating a button using the widget
-# Button that will call the submit function
-sub_btn = tk.Button(root, text='Submit', command=submit)
+# Sign in frame
+signin = ttk.Frame(root)
+signin.pack(padx=10, pady=10, fill='x', expand=True)
 
-# placing the label and entry in
-# the required position using grid
-# method
-size_label.grid(row=0, column=0)
-size_entry.grid(row=0, column=1)
-sub_btn.grid(row=2, column=1)
 
-# performing an infinite loop
-# for the window to display
+# email
+width_label = ttk.Label(signin, text="width:")
+width_label.pack(fill='x', expand=True)
+
+width_entry = ttk.Entry(signin, textvariable=width)
+width_entry.pack(fill='x', expand=True)
+width_entry.focus()
+
+# password
+height_label = ttk.Label(signin, text="height:")
+height_label.pack(fill='x', expand=True)
+
+height_entry = ttk.Entry(signin, textvariable=height)
+height_entry.pack(fill='x', expand=True)
+
+# login button
+submit_button = ttk.Button(signin, text="Submit", command=login_clicked)
+submit_button.pack(fill='x', expand=True, pady=10)
+
+
 root.mainloop()
+

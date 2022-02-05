@@ -1,34 +1,46 @@
+from random import randint, seed
+from time import perf_counter
 from tkinter import*
 import tkinter as tk
 import Text_Box as tb
-
-root = tk.Tk()
-
-defined_size = tb.size_var.get()
+from graphics import *
 
 
-root.geometry(defined_size)
+def random_color():
+    # Don't worry about the internal details of this function.
+    colors = ['blue', 'blue2', 'blue3',
+              'green', 'green2', 'green3',
+              'orange', 'orange2', 'orange3',
+              'red', 'red2', 'red3',
+              'purple', 'purple2', 'purple3',
+              'yellow', 'yellow2', 'yellow3',
+              'gray', 'gray2', 'gray3',
+              'pink', 'pink1', 'pink2', 'pink3']
 
-c = tk.Canvas(root, height=1000, width=1000, bg='white')
-
-
-def create_grid(event=None):
-
-    w = c.winfo_width() # Get current width of canvas
-    h = c.winfo_height() # Get current height of canvas
-    c.delete('grid_line') # Will only remove the grid_line
-
-    # Creates all vertical lines
-    for i in range(0, w, 12):
-        c.create_line([(i, 0), (i, h)], tag='grid_line')
-
-    # Creates all horizontal lines
-    for i in range(0, h, 12):
-        c.create_line([(0, i), (w, i)], tag='grid_line')
+    return colors[randint(0, len(colors)-1)]
 
 
-c.bind('<Configure>', create_grid)
-c.pack(fill=tk.BOTH, expand=True)
+def main():
+    seed(perf_counter())  # Initialize random number generator
 
-root.mainloop()
+    top_left_x = 100
+    top_left_y = 100
+    width = 12
+    height = 12
+    # num_rows = int(input('Number of rows: '))  # commented out for now
+    num_columns = int(input('Number of columns: '))
+
+    window = GraphWin('Lab 4B', tb.width.get(), tb.height.get())
+    top_left_point = Point(top_left_x, top_left_y)
+    bottom_right_point = Point(top_left_x + width, top_left_y + height)
+    enclosing_rectangle = Rectangle(top_left_point, bottom_right_point)
+    enclosing_rectangle.setFill(random_color())
+
+    enclosing_rectangle.draw(window)
+
+    window.getMouse()
+    window.close()
+
+
+main()
 
