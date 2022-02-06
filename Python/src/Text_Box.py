@@ -4,19 +4,18 @@ from tkinter.messagebox import showinfo
 
 # root window
 root = tk.Tk()
-root.geometry("300x150")
+root.geometry("500x300")
 root.resizable(False, False)
-root.title('Enter width and height')
+root.title('Enter Canvas Size')
 
 # store email address and password
-width = tk.StringVar()
-height = tk.StringVar()
+canvas_size = tk.StringVar()
 
 
 def login_clicked():
     """ callback when the login button clicked
     """
-    msg = f'You entered width: {width.get()} and height: {height.get()}'
+    msg = f'You entered size as: {canvas_size.get()} '
     showinfo(
         title='Information',
         message=msg
@@ -29,19 +28,13 @@ signin.pack(padx=10, pady=10, fill='x', expand=True)
 
 
 # email
-width_label = ttk.Label(signin, text="width:")
-width_label.pack(fill='x', expand=True)
+size_label = ttk.Label(signin, text="'Enter Canvas Size such as: 100x100 (whole numbers only, lowercase x only'")
+size_label.pack(fill='x', expand=True)
 
-width_entry = ttk.Entry(signin, textvariable=width)
-width_entry.pack(fill='x', expand=True)
-width_entry.focus()
+size_entry = ttk.Entry(signin, textvariable=canvas_size)
+size_entry.pack(fill='x', expand=True)
+size_entry.focus()
 
-# password
-height_label = ttk.Label(signin, text="height:")
-height_label.pack(fill='x', expand=True)
-
-height_entry = ttk.Entry(signin, textvariable=height)
-height_entry.pack(fill='x', expand=True)
 
 # login button
 submit_button = ttk.Button(signin, text="Submit", command=login_clicked)
