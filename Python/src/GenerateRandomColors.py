@@ -17,12 +17,12 @@ class randomColorGrid:
         window.geometry(defined_size)
         window.title("Display Random Colors")
 
-        for i in range(3064):
+        for i in range(7064):
             if i % 2 == (i // 8) % 2:
                 color = random_color()
             else:
                 color = random_color()
-            Canvas(window, width=25, height=25, bg=color).grid(row=i // 60, column=i % 60)
+            Canvas(window, width=12, height=12, bg=color).grid(row=i // 100, column=i % 100)
 
         window.mainloop()
 
