@@ -28,7 +28,7 @@ signin.pack(padx=10, pady=10, fill='x', expand=True)
 
 
 # email
-size_label = ttk.Label(signin, text="'Enter Canvas Size such as: 100x100 (whole numbers only, lowercase x only'")
+size_label = ttk.Label(signin, text="'Enter Canvas Size such as: 100x100 (whole numbers only, lowercase x only)")
 size_label.pack(fill='x', expand=True)
 
 size_entry = ttk.Entry(signin, textvariable=canvas_size)
